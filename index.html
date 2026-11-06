@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Slidey – Block Slides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/share.css">
+</head>
+<body data-view="home">
+
+  <!-- ================= Home page ================= -->
+  <section id="home">
+    <div class="hbox">
+      <div class="badge">🎞️ Slidey</div>
+      <h1>Slides, written<br>like <em>Notion</em>.</h1>
+      <p class="lead">Build slides from simple blocks and present them right in your browser, on desktop or phone. No clutter, no images.</p>
+      <ol class="steps">
+        <li><b>Type <code>/</code></b><span>to add headings, lists, checklists, quotes, code, columns or tables.</span></li>
+        <li><b>Pick a look</b><span>Charcoal, Ember or Cream.</span></li>
+        <li><b>Hit Present</b><span>Swipe through slides. Use the laser and the fading pen to explain.</span></li>
+      </ol>
+      <button class="pri big" id="use">Use it →</button>
+      <p class="note">Your slides save automatically in this browser.</p>
+    </div>
+  </section>
+
+  <!-- ================= Editor ================= -->
+  <div id="app">
+    <header>
+      <b id="logo" class="logo">🎞️ Slidey</b>
+      <!-- The children of this span touch each other on purpose: any whitespace
+           between them would add a small gap and change the header's look. -->
+      <span><small id="saved" class="saved-note">Saved ✓</small
+      ><select id="look" title="Colour look"><option value="charcoal">Charcoal</option><option value="ember">Ember</option><option value="cream">Cream</option></select
+      ><button class="sec" id="share-btn" title="Get a link anyone can open">🔗<span class="lbl"> Share</span></button
+      ><button class="pri" id="go">▶ Present</button></span>
+    </header>
+
+    <main>
+      <aside><div id="list"></div><button id="add">+ New slide</button></aside>
+
+      <div class="stagewrap">
+        <div class="tools">
+          <button id="un" title="Undo">↶</button>
+          <button id="re" title="Redo">↷</button>
+          <span class="sep"></span>
+          <button id="fm" title="Smaller text">Aa−</button>
+          <b id="fl">100%</b>
+          <button id="fp" title="Bigger text">Aa+</button>
+          <span class="sep"></span>
+          <button id="dup">⧉ Duplicate</button>
+          <button id="ab">＋ Block</button>
+        </div>
+        <div id="slide" class="slide"><div class="inner" id="inner"></div></div>
+        <div class="hint">Type <b>/</b> for blocks · select text to format · drag ⋮⋮ or tap it to move blocks</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Floating pieces used by the editor -->
+  <div id="menu"></div>
+  <div id="fmt">
+    <button data-c="b"><b>B</b></button>
+    <button data-c="i"><i>I</i></button>
+    <button data-c="h">H</button>
+  </div>
+
+  <!-- ================= Present mode ================= -->
+  <div id="present">
+    <div id="pstage" class="slide"><div class="inner" id="pinner"></div></div>
+    <canvas id="ink"></canvas>
+    <div id="laser"></div>
+    <div id="ptb">
+      <button id="pp">◀</button>
+      <span id="pc"></span>
+      <button id="pn">▶</button>
+      <i></i>
+      <button id="bl">🔴<span class="lbl"> Laser</span></button>
+      <button id="bp">✏️<span class="lbl"> Pen</span></button>
+      <i></i>
+      <button id="bx">✕<span class="lbl"> Exit</span></button>
+    </div>
+  </div>
+
+  <!-- ================= Share dialog (new) ================= -->
+  <div id="share" class="share">
+    <div class="share-card" id="share-card" role="dialog" aria-modal="true" aria-labelledby="share-title">
+      <h2 id="share-title">Share your slides</h2>
+      <p id="share-msg" class="share-msg"></p>
+      <div class="share-row">
+        <input id="share-link" type="text" readonly aria-label="Share link">
+        <button class="pri" id="share-copy">Copy</button>
+      </div>
+      <p class="share-note">Anyone with this link can view these slides, no sign up needed. The link is a snapshot, so share again after you make changes.</p>
+      <button class="sec" id="share-close">Close</button>
+    </div>
+  </div>
+
+  <!-- ================= Shared-link viewer status (new) ================= -->
+  <div id="viewer">
+    <p id="viewer-msg">Loading slides…</p>
+    <a id="viewer-home" class="pri" href="./">Make your own slides →</a>
+  </div>
+
+  <!-- Scripts run in this order. They share globals, so there are no imports. -->
+  <script src="js/config.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/richtext.js"></script>
+  <script src="js/blocks.js"></script>
+  <script src="js/menus.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/present.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/viewer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

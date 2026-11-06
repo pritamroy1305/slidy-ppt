@@ -1,0 +1,148 @@
+/* ==========================================================
+   Styles for the NEW features only: Share button, share dialog
+   and the view-only page for shared links. They reuse the
+   existing colour variables, so every look (Charcoal, Ember,
+   Cream) keeps working. Nothing in styles.css was changed.
+   ========================================================== */
+
+/* ---------- Header bits that used to be inline styles ---------- */
+
+.logo {
+  cursor: pointer;
+}
+
+.saved-note {
+  color: var(--mute);
+  margin-right: 12px;
+}
+
+/* ---------- Secondary (outlined) button, used by Share ---------- */
+
+.sec {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 7px 14px;           /* 7 + 1px border = 8, so it is exactly as tall as the Present button */
+  border-radius: 999px;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.sec:hover {
+  background: var(--hov);
+}
+
+/* ---------- Share dialog ---------- */
+
+.share {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, .55);
+}
+
+.share.on {
+  display: flex;
+}
+
+.share-card {
+  width: min(100%, 440px);
+  box-sizing: border-box;
+  background: rgba(17, 19, 22, .96);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, .28);
+  padding: 20px;
+}
+
+.share-card h2 {
+  font-family: "Syne", Montserrat, sans-serif;
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.share-msg {
+  font-size: 13px;
+  color: var(--mute);
+  margin: 0 0 12px;
+  min-height: 1.4em;
+}
+
+.share-row,
+.share-note {
+  display: none;
+}
+
+.share-card.ready .share-row {
+  display: flex;
+  gap: 8px;
+}
+
+.share-card.ready .share-note {
+  display: block;
+  font-size: 12px;
+  color: var(--mute);
+  margin: 12px 0;
+}
+
+.share-row input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, .02);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+#share-close {
+  margin-right: 0;
+  margin-top: 4px;
+}
+
+/* ---------- Shared link: view-only page ---------- */
+
+body[data-view=viewer] #app,
+body[data-view=viewer] #home {
+  display: none;
+}
+
+#viewer {
+  display: none;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body[data-view=viewer] #viewer {
+  display: flex;
+}
+
+#viewer-msg {
+  margin: 0;
+  font-size: 15px;
+  color: var(--mute);
+}
+
+#viewer-home {
+  display: none;
+  text-decoration: none;
+}
+
+#viewer.error #viewer-home {
+  display: inline-block;
+}

@@ -1,0 +1,21 @@
+# Cloudflare Worker settings for the Slidey sharing backend.
+# See ../README.md for the step-by-step setup.
+
+name = "slidey-api"
+main = "index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+# Which website may call this API. "*" allows any site.
+# Once your site is live, change it to its address, for example:
+#   ALLOWED_ORIGIN = "https://slidey.example.com"
+ALLOWED_ORIGIN = "*"
+
+# Optional: delete shared decks after this many days. Leave commented to keep them.
+# DECK_TTL_DAYS = "365"
+
+# Where decks are stored. Create it with:  npx wrangler kv namespace create DECKS
+# then paste the id it prints below.
+[[kv_namespaces]]
+binding = "DECKS"
+id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"
