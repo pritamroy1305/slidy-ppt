@@ -18,4 +18,4 @@ ALLOWED_ORIGIN = "*"
 # then paste the id it prints below.
 [[kv_namespaces]]
 binding = "DECKS"
-id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"
+id = "cb429cada7d04d69937d6dfae77897b7"
